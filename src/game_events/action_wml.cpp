@@ -520,7 +520,7 @@ namespace {
 			static const std::string s_sep = "(, |\\n)";
 			static const std::string s_prefix = R"""((\d+ )?)""";
 			static const std::string s_all = "(" + s_prefix + s_terrain + s_sep + ")+";
-			static const boost::regex r_all(s_all);
+			static const std::regex r_all(s_all);
 
 			const std::string& mapfile = filesystem::get_wml_location(filename_);
 			std::string res = "";
@@ -528,7 +528,7 @@ namespace {
 				res = filesystem::read_file(mapfile);
 			}
 			config retv;
-			if(boost::regex_match(res, r_all))
+			if(std::regex_match(res, r_all))
 			{
 				retv["map_data"] = res;
 			}
